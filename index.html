@@ -8,23 +8,63 @@
   :root{
     --bg:#0b0b0d; --panel:#0f1113; --muted:#9aa0a6; --glass: rgba(0,0,0,0.6);
   }
-  body{background:linear-gradient(180deg,#050506 0%, #0b0b0d 100%); color:#e6eef6; font-family: Inter, Arial, sans-serif; margin:0; padding:24px; -webkit-font-smoothing:antialiased;}
-  .container{max-width:980px; margin:0 auto; display:grid; grid-template-columns: 1fr 360px; gap:20px; align-items:start;}
-  header{grid-column:1/-1; display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;}
-  header h1{font-size:20px; letter-spacing:0.6px; margin:0;}
+  body{
+    background:linear-gradient(180deg,#050506 0%, #0b0b0d 100%);
+    color:#e6eef6;
+    font-family: Inter, Arial, sans-serif;
+    margin:0;
+    padding:16px;
+    -webkit-font-smoothing:antialiased;
+  }
+  .container{
+    max-width:980px;
+    margin:0 auto;
+    display:grid;
+    grid-template-columns: 1fr 360px;
+    gap:20px;
+    align-items:start;
+  }
+  header{
+    grid-column:1/-1;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:8px;
+    text-align:center;
+  }
+  header h1{
+    font-size:20px;
+    letter-spacing:0.6px;
+    margin:0;
+    width:100%;
+  }
   header .brand{font-weight:700; color:#cfe3ff;}
-  .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border-radius:12px; padding:18px; box-shadow: 0 6px 18px rgba(0,0,0,0.6);}
+  .card{
+    background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border-radius:12px;
+    padding:18px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.6);
+  }
   .profile{display:flex; gap:14px; align-items:center;}
   .avatar{width:86px; height:86px; border-radius:10px; background:#222; display:flex; align-items:center; justify-content:center; font-weight:700; color:#fff; font-size:20px;}
   .meta h2{margin:0 0 6px 0; font-size:18px;}
   .meta p{margin:0; color:var(--muted); font-size:13px;}
   .stars{margin-top:10px; font-size:20px;}
   .score-big{font-size:36px; font-weight:700; margin-top:8px;}
-  .controls{display:flex; gap:8px; margin-top:12px;}
-  button{border:0; padding:10px 12px; border-radius:8px; cursor:pointer; font-weight:600; background:#141617; color:#dfe9f8;}
+  .controls{display:flex; flex-wrap:wrap; gap:8px; margin-top:12px;}
+  button{border:0; padding:10px 12px; border-radius:8px; cursor:pointer; font-weight:600; background:#141617; color:#dfe9f8; flex:1;}
   button.positive{background:#0b3b1f;}
   button.negative{background:#3b0b0b;}
-  select,input[type=text]{background:#0f1113; border:1px solid rgba(255,255,255,0.03); color:#dfe9f8; padding:8px; border-radius:8px;}
+  select,input[type=text]{
+    background:#0f1113;
+    border:1px solid rgba(255,255,255,0.03);
+    color:#dfe9f8;
+    padding:8px;
+    border-radius:8px;
+    flex:1;
+    min-width:130px;
+  }
   .right-column{position:relative;}
   .ranking{margin-bottom:12px;}
   .row{display:flex; justify-content:space-between; gap:10px; padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.02); align-items:center;}
@@ -34,7 +74,6 @@
   .notif-title{font-size:13px; color:#9fb7ff; font-weight:700; margin-bottom:6px;}
   .notif-body{font-size:16px;}
   footer{grid-column:1/-1; margin-top:18px; color:var(--muted); font-size:13px;}
-  /* Colors for classes */
   .premium{background:linear-gradient(90deg,#b68f08,#fff7d6); color:#0a0a0a;}
   .estandar{background:linear-gradient(90deg,#8fb9ff,#dff3ff); color:#041024;}
   .bajo{background:#9aa0a6; color:#041024;}
@@ -42,6 +81,34 @@
   .noaut{background:linear-gradient(90deg,#e34b4b,#ffd6d6); color:#041024;}
   .small-muted{color:var(--muted); font-size:13px;}
   .controls .btn-action{min-width:48px;}
+
+  /* 📱 --- Diseño vertical (responsive) --- */
+  @media (max-width: 768px) {
+    .container{
+      display:flex;
+      flex-direction:column;
+      gap:20px;
+    }
+    header h1{
+      font-size:18px;
+    }
+    .avatar{width:70px; height:70px; font-size:18px;}
+    .controls{
+      flex-direction:column;
+      align-items:stretch;
+    }
+    button, select{
+      width:100%;
+    }
+    .right-column{
+      width:100%;
+      order:2;
+    }
+    footer{
+      text-align:center;
+      font-size:12px;
+    }
+  }
 </style>
 </head>
 <body>
@@ -52,8 +119,8 @@
     </header>
 
     <section class="card">
-      <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:12px;">
-        <div style="flex:1;">
+      <div style="display:flex; flex-direction:column; gap:16px;">
+        <div>
           <div style="display:flex; gap:14px; align-items:center;">
             <div class="avatar" id="avatar">EV</div>
             <div class="meta">
@@ -85,7 +152,7 @@
           </div>
         </div>
 
-        <aside class="right-column" style="width:320px;">
+        <aside class="right-column">
           <div class="card ranking">
             <h3 style="margin:0 0 8px 0;font-size:15px;">Ranking</h3>
             <div id="rankingList"></div>
@@ -108,7 +175,7 @@
   </div>
 
 <script>
-// Datos iniciales
+/* --- Tu mismo script, intacto --- */
 let users = [
   {id:1, name:'Elias Verón', score:4.7, role:'Modelo ciudadano — Carisma público', avatar:'EV'},
   {id:2, name:'Luna Ortega', score:4.0, role:'Artista/creadora', avatar:'LO'},
@@ -132,117 +199,34 @@ const negativeReasons = [
   'Riesgo social detectado'
 ];
 
-function classFromScore(s){
-  if(s>=4.5) return 'Premium';
-  if(s>=3.5) return 'Estándar';
-  if(s>=2.5) return 'Bajo';
-  if(s>=1.5) return 'Riesgo';
-  return 'No Autorizado';
-}
-function classClass(s){
-  if(s>=4.5) return 'premium';
-  if(s>=3.5) return 'estandar';
-  if(s>=2.5) return 'bajo';
-  if(s>=1.5) return 'riesgo';
-  return 'noaut';
-}
+function classFromScore(s){ if(s>=4.5) return 'Premium'; if(s>=3.5) return 'Estándar'; if(s>=2.5) return 'Bajo'; if(s>=1.5) return 'Riesgo'; return 'No Autorizado'; }
+function classClass(s){ if(s>=4.5) return 'premium'; if(s>=3.5) return 'estandar'; if(s>=2.5) return 'bajo'; if(s>=1.5) return 'riesgo'; return 'noaut'; }
 
-const selectUser = document.getElementById('selectUser');
-const reasonSelect = document.getElementById('reasonSelect');
-const avatar = document.getElementById('avatar');
-const userName = document.getElementById('userName');
-const userRole = document.getElementById('userRole');
-const scoreDisplay = document.getElementById('scoreDisplay');
-const starsDisplay = document.getElementById('starsDisplay');
-const classBadge = document.getElementById('classBadge');
-const miniHistory = document.getElementById('miniHistory');
-const rankingList = document.getElementById('rankingList');
-const notifHistory = document.getElementById('notifHistory');
-const popup = document.getElementById('popup');
-const popupBody = document.getElementById('popupBody');
+const selectUser=document.getElementById('selectUser'),reasonSelect=document.getElementById('reasonSelect'),avatar=document.getElementById('avatar'),
+userName=document.getElementById('userName'),userRole=document.getElementById('userRole'),scoreDisplay=document.getElementById('scoreDisplay'),
+starsDisplay=document.getElementById('starsDisplay'),classBadge=document.getElementById('classBadge'),miniHistory=document.getElementById('miniHistory'),
+rankingList=document.getElementById('rankingList'),notifHistory=document.getElementById('notifHistory'),popup=document.getElementById('popup'),popupBody=document.getElementById('popupBody');
 
-function init(){
-  users.forEach(u => {
-    let opt = document.createElement('option');
-    opt.value = u.id;
-    opt.textContent = u.name;
-    selectUser.appendChild(opt);
-  });
-  selectUser.value = users[0].id;
-  populateReasons();
-  renderUser(users[0].id);
-  renderRanking();
-}
-function populateReasons(){
-  reasonSelect.innerHTML = '';
-  positiveReasons.concat(negativeReasons).forEach(r => {
-    let o = document.createElement('option'); o.value = r; o.textContent = r; reasonSelect.appendChild(o);
-  });
-}
-function renderUser(id){
-  const u = users.find(x=>x.id==id);
-  avatar.textContent = u.avatar;
-  userName.textContent = u.name;
-  userRole.textContent = u.role;
-  scoreDisplay.textContent = u.score.toFixed(1);
-  starsDisplay.textContent = starsFromScore(u.score);
-  classBadge.textContent = classFromScore(u.score);
-  classBadge.className = 'class-badge ' + classClass(u.score);
-  updateMiniHistory(u.id);
-}
-function starsFromScore(s){
-  let full = Math.floor(s);
-  let half = (s - full) >= 0.5 ? 1 : 0;
-  let out = '★'.repeat(full) + (half? '☆' : '') + '☆'.repeat(Math.max(0,5-full-half));
-  return out;
-}
-function renderRanking(){
-  let sorted = [...users].sort((a,b)=>b.score-a.score);
-  rankingList.innerHTML='';
-  sorted.forEach((u) => {
-    let div = document.createElement('div');
-    div.className = 'row';
-    div.innerHTML = `<div style="display:flex;gap:10px;align-items:center"><div style="width:36px;height:36px;border-radius:6px;background:#141516;display:flex;align-items:center;justify-content:center;font-weight:700">${u.avatar}</div><div><div style="font-weight:700">${u.name}</div><div class="small-muted" style="font-size:12px">${u.role}</div></div></div><div style="text-align:right"><div style="font-weight:700">${u.score.toFixed(1)}</div><div style="margin-top:6px"><span class="class-badge ${classClass(u.score)}">${classFromScore(u.score)}</span></div></div>`;
-    div.onclick = ()=>{ selectUser.value = u.id; renderUser(u.id); };
-    rankingList.appendChild(div);
-  });
-}
-function pushNotification(text){
-  popupBody.textContent = text;
-  popup.style.display = 'block';
-  setTimeout(()=> popup.style.display='none', 2500);
-}
-function addNotifRecord(userId, change, reason){
-  const u = users.find(x=>x.id==userId);
-  const when = new Date().toLocaleString();
-  const sign = change>0?'+':'−';
-  const txt = `${sign}${Math.abs(change).toFixed(1)} | ${reason} — ${u.name} — ${when}`;
-  let p = document.createElement('div'); p.textContent = txt; p.style.padding='6px 0'; notifHistory.prepend(p);
-  let mh = document.createElement('div'); mh.textContent = txt; mh.style.padding='6px 0'; miniHistory.prepend(mh);
-  if(notifHistory.children.length>60) notifHistory.removeChild(notifHistory.lastChild);
-  if(miniHistory.children.length>10) miniHistory.removeChild(miniHistory.lastChild);
-}
-function changeScore(delta){
-  const uid = Number(selectUser.value);
-  const u = users.find(x=>x.id==uid);
-  const reason = reasonSelect.value || (delta>0? positiveReasons[0]: negativeReasons[0]);
-  u.score = Math.max(0, Math.min(5, +(u.score + delta).toFixed(1)));
-  renderUser(uid);
-  renderRanking();
-  const sign = delta>0? '+'+delta.toFixed(1) : '−'+Math.abs(delta).toFixed(1);
-  pushNotification(`${sign} | ${reason}`);
-  addNotifRecord(uid, delta, reason);
-}
-
-document.getElementById('btnUp').addEventListener('click', ()=> changeScore(0.3));
-document.getElementById('btnDown').addEventListener('click', ()=> changeScore(-0.3));
-document.getElementById('btnPopup').addEventListener('click', ()=> {
-  const uid = Number(selectUser.value);
-  const u = users.find(x=>x.id==uid);
-  pushNotification(`S.R.I. — ${u.name} — ${u.score.toFixed(1)}`);
-});
-selectUser.addEventListener('change', ()=> renderUser(Number(selectUser.value)));
-
+function init(){users.forEach(u=>{let opt=document.createElement('option');opt.value=u.id;opt.textContent=u.name;selectUser.appendChild(opt);});
+selectUser.value=users[0].id;populateReasons();renderUser(users[0].id);renderRanking();}
+function populateReasons(){reasonSelect.innerHTML='';positiveReasons.concat(negativeReasons).forEach(r=>{let o=document.createElement('option');o.value=r;o.textContent=r;reasonSelect.appendChild(o);});}
+function renderUser(id){const u=users.find(x=>x.id==id);avatar.textContent=u.avatar;userName.textContent=u.name;userRole.textContent=u.role;scoreDisplay.textContent=u.score.toFixed(1);
+starsDisplay.textContent=starsFromScore(u.score);classBadge.textContent=classFromScore(u.score);classBadge.className='class-badge '+classClass(u.score);updateMiniHistory(u.id);}
+function starsFromScore(s){let full=Math.floor(s);let half=(s-full)>=0.5?1:0;let out='★'.repeat(full)+(half?'☆':'')+'☆'.repeat(Math.max(0,5-full-half));return out;}
+function renderRanking(){let sorted=[...users].sort((a,b)=>b.score-a.score);rankingList.innerHTML='';sorted.forEach((u)=>{let div=document.createElement('div');div.className='row';
+div.innerHTML=`<div style="display:flex;gap:10px;align-items:center"><div style="width:36px;height:36px;border-radius:6px;background:#141516;display:flex;align-items:center;justify-content:center;font-weight:700">${u.avatar}</div><div><div style="font-weight:700">${u.name}</div><div class="small-muted" style="font-size:12px">${u.role}</div></div></div><div style="text-align:right"><div style="font-weight:700">${u.score.toFixed(1)}</div><div style="margin-top:6px"><span class="class-badge ${classClass(u.score)}">${classFromScore(u.score)}</span></div></div>`;
+div.onclick=()=>{selectUser.value=u.id;renderUser(u.id);};rankingList.appendChild(div);});}
+function pushNotification(text){popupBody.textContent=text;popup.style.display='block';setTimeout(()=>popup.style.display='none',2500);}
+function addNotifRecord(userId,change,reason){const u=users.find(x=>x.id==userId);const when=new Date().toLocaleString();const sign=change>0?'+':'−';const txt=`${sign}${Math.abs(change).toFixed(1)} | ${reason} — ${u.name} — ${when}`;
+let p=document.createElement('div');p.textContent=txt;p.style.padding='6px 0';notifHistory.prepend(p);let mh=document.createElement('div');mh.textContent=txt;mh.style.padding='6px 0';miniHistory.prepend(mh);
+if(notifHistory.children.length>60)notifHistory.removeChild(notifHistory.lastChild);if(miniHistory.children.length>10)miniHistory.removeChild(miniHistory.lastChild);}
+function changeScore(delta){const uid=Number(selectUser.value);const u=users.find(x=>x.id==uid);const reason=reasonSelect.value||(delta>0?positiveReasons[0]:negativeReasons[0]);
+u.score=Math.max(0,Math.min(5,+(u.score+delta).toFixed(1)));renderUser(uid);renderRanking();const sign=delta>0?'+'+delta.toFixed(1):'−'+Math.abs(delta).toFixed(1);
+pushNotification(`${sign} | ${reason}`);addNotifRecord(uid,delta,reason);}
+document.getElementById('btnUp').addEventListener('click',()=>changeScore(0.3));
+document.getElementById('btnDown').addEventListener('click',()=>changeScore(-0.3));
+document.getElementById('btnPopup').addEventListener('click',()=>{const uid=Number(selectUser.value);const u=users.find(x=>x.id==uid);pushNotification(`S.R.I. — ${u.name} — ${u.score.toFixed(1)}`);});
+selectUser.addEventListener('change',()=>renderUser(Number(selectUser.value)));
 init();
 </script>
 </body>
